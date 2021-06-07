@@ -3,7 +3,7 @@ import React from "react";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { deleteSong, setCurrent } from "../actions/songActions";
-import M from 'materialize-css/dist/js/materialize.min.js';
+import M from "materialize-css/dist/js/materialize.min.js";
 
 const SongItem = ({ song, deleteSong, setCurrent }) => {
   const onDelete = () => {
@@ -25,7 +25,7 @@ const SongItem = ({ song, deleteSong, setCurrent }) => {
         </a>
         <br />
         <span className="grey-text">
-          <span className="black-text">ID#{song.id}:</span> last updated 
+          <span className="black-text">ID#{song.id}:</span> last updated
           <Moment format="MMMM Do YYYY, h:mm:ss a">{song.date}</Moment>
         </span>
         <a href="#!" onClick={onDelete} className="secondary-content">

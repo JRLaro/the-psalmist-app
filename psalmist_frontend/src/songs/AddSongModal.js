@@ -10,28 +10,28 @@ const AddSongModal = ({ addSong }) => {
   const [verse, setVerse] = useState("");
   const [chorus, setChorus] = useState("");
 
-const onSubmit = () => {
-  if (title === "") {
-    M.toast({ html: "What is the title of your Song?" });
-  } else {
-    const newSong = {
-      title,
-      intro,
-      verse,
-      chorus,
-      date: new Date(),
-    };
+  const onSubmit = () => {
+    if (title === "") {
+      M.toast({ html: "What is the title of your Song?" });
+    } else {
+      const newSong = {
+        title,
+        intro,
+        verse,
+        chorus,
+        date: new Date(),
+      };
 
-    addSong(newSong);
-    M.toast({ html: `${title} was added` });
+      addSong(newSong);
+      M.toast({ html: `${title} was added` });
 
-    //clear fields
-    setTitle("");
-    setIntro("");
-    setVerse("");
-    setChorus("");
-  }
-}
+      //clear fields
+      setTitle("");
+      setIntro("");
+      setVerse("");
+      setChorus("");
+    }
+  };
 
   return (
     <div
@@ -97,7 +97,7 @@ const onSubmit = () => {
       </div>
       <div className="modal-footer">
         <a
-          href="'#!"
+          href="#!"
           onClick={onSubmit}
           className="modal-close waves-effect green btn"
         >
