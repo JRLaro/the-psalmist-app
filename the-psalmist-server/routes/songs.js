@@ -3,7 +3,7 @@ const router = express.Router();
 
 // get user's songs
 router.get("/", (req, res) => {
-  res.send("Get user budgets");
+  res.send("Get user songs");
 });
 
 // add a new song
