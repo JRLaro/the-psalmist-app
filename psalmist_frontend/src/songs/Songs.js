@@ -21,7 +21,8 @@ const Songs = ({ song: { songs, loading }, getSongs }) => {
       </li>
       {!loading && songs.length === 0 ? (
         <>
-          <p className="center">You have no songs</p>
+          <p className="center">Psalm 96:
+          "Sing a new song..."</p>
           <div style={{ marginLeft: "48%", paddingBottom: "5%" }}>
             <a
               href="#add-song-modal"

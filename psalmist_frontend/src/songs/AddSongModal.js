@@ -16,9 +16,9 @@ const AddSongModal = ({ addSong }) => {
     } else {
       const newSong = {
         title,
-        intro,
-        verse,
-        chorus,
+        // intro,
+        // verse,
+        // chorus,
         date: new Date(),
       };
 
@@ -37,10 +37,10 @@ const AddSongModal = ({ addSong }) => {
     <div
       id="add-song-modal"
       className="modal"
-      style={{ width: "50%", height: "auto" }}
+      style={{ width: "25%", height: "auto" }}
     >
       <div className="modal-content">
-        <h4>Songs</h4>
+        <h4 className="center">New Song</h4>
         <br />
         <div className="row">
           <div className="input-field">
@@ -55,7 +55,7 @@ const AddSongModal = ({ addSong }) => {
             </label>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="input-field">
             <input
               type="text"
@@ -93,15 +93,14 @@ const AddSongModal = ({ addSong }) => {
               Chorus
             </label>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="modal-footer">
         <a
-          href="#!"
+          href="/new_song"
           onClick={onSubmit}
           className="modal-close waves-effect green btn"
         >
-          {" "}
           ENTER
         </a>
       </div>
