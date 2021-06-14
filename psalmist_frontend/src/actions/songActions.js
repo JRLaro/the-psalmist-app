@@ -1,16 +1,19 @@
 import axios from "axios";
 import {
   GET_SONGS,
+  GET_SONG,
   SET_LOADING,
   SONGS_ERROR,
   ADD_SONG,
   DELETE_SONG,
   UPDATE_SONG,
   SET_CURRENT,
-  CLEAR_CURRENT
+  CLEAR_CURRENT,
+  START_LOADING,
+  STOP_LOADING,
 } from "./types";
 
-//get song from db.json
+//get ALL songs from db.json
 export const getSongs = () => async (dispatch) => {
   try {
     setLoading();
@@ -28,7 +31,32 @@ export const getSongs = () => async (dispatch) => {
   }
 };
 
-//add songs
+//get song
+export const getSong = (song) => async (dispatch) => {
+  // console.log(' I should get song back');
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    setLoading();
+
+    const res = await axios.get(`/new_song/${song.id}`, song, config);
+console.log('says something - get song');
+    dispatch({
+      type: GET_SONG,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: SONGS_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+//add song
 export const addSong = (song) => async (dispatch) => {
   const config = {
     headers: {
@@ -37,9 +65,11 @@ export const addSong = (song) => async (dispatch) => {
   };
 
   try {
-    setLoading();
+    startLoading();
 
     const res = await axios.post("/songs", song, config);
+    // console.log(res.data);
+    stopLoading();
 
     dispatch({
       type: ADD_SONG,
@@ -48,7 +78,7 @@ export const addSong = (song) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SONGS_ERROR,
-      payload: err.response
+      payload: err.response,
     });
   }
 };
@@ -91,30 +121,42 @@ export const deleteSong = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SONGS_ERROR,
-      // payload: err.response.data,
+      payload: err.response.data,
     });
   }
 };
 
 //set current song
 export const setCurrent = (song) => {
+  // console.log('setCurrent Fired');
   return {
     type: SET_CURRENT,
-    payload: song
-  }
-}
+    payload: song,
+  };
+};
 
 //clear current song
 export const clearCurrent = () => {
   return {
     type: CLEAR_CURRENT,
-  }
-}
-
+  };
+};
 
 //set loading --> true
 export const setLoading = () => {
   return {
     type: SET_LOADING,
+  };
+};
+//start loading --> true
+export const startLoading = () => {
+  return {
+    type: START_LOADING,
+  };
+};
+//stop loading --> false
+export const stopLoading = () => {
+  return {
+    type: STOP_LOADING,
   };
 };

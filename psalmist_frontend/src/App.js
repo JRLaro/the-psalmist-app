@@ -9,6 +9,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import { Provider } from "react-redux";
 import store from "./store";
 import NewSong from "./components/pages/NewSong";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
   useEffect(() => {
@@ -18,11 +19,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <Navbar />
           <Switch>
             {/* <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} /> */}
             <Route exact path="/home" component={Homepage} />
-            <Route exact path="/new_song" component={NewSong} />
+            <Route exact path="/new_song/:id" component={NewSong} />
           </Switch>
         </Fragment>
       </Router>
