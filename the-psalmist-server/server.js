@@ -4,8 +4,11 @@ const connectDB = require("./config/db");
 
 // Connect Database
 connectDB();
-
 const app = express();
+
+// allow us to accept data/ allows the body to receive data
+app.use(express.json({ extended: false }));
+
 
 app.get("/home", (req, res) => {
   res.send("The Psalmist");
