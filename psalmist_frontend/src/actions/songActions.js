@@ -48,7 +48,7 @@ export const addSong = (song) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SONGS_ERROR,
-      payload: err.response.data,
+      payload: err.response
     });
   }
 };
@@ -82,7 +82,7 @@ export const deleteSong = (id) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.delete(`/songs/${id}`);
+    await axios.delete(`/songs/${id}`);
 
     dispatch({
       type: DELETE_SONG,
@@ -91,7 +91,7 @@ export const deleteSong = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: SONGS_ERROR,
-      payload: err.response.data,
+      // payload: err.response.data,
     });
   }
 };
