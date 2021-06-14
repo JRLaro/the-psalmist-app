@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const BudgetSchema = mongoose.Schema({
+const SongSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users", // name of the collection you want to refer to in the database
@@ -145,4 +145,4 @@ const BudgetSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("budget", BudgetSchema);
+module.exports = mongoose.model("song", SongSchema);
