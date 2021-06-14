@@ -24,7 +24,8 @@ function App() {
             {/* <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} /> */}
             <Route exact path="/home" component={Homepage} />
-            <Route exact path="/new_song/:id" component={NewSong} />
+            {/* <Route exact path="/new_song/:id" component={NewSong} /> */}
+            <Route exact path="/new_song" component={NewSong} />
           </Switch>
         </Fragment>
       </Router>

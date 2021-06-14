@@ -3,13 +3,15 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { addSong } from "../actions/songActions";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 const AddSongModal = () => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.song);
+  const { loading, current } = useSelector((state) => state.song);
 
+let history = useHistory()
+  console.log(current);
   // console.log(loading);
 
   // useEffect(() => {
@@ -19,7 +21,7 @@ const AddSongModal = () => {
   // }, [loading]);
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (title === "") {
       M.toast({ html: "What is the title of your Song?" });
@@ -34,10 +36,11 @@ const AddSongModal = () => {
       // //clear fields
       // setTitle("");
 
-      // location.assign("/new_song");
-      // <Redirect to="/new_song/:id" />;
-      <Redirect to={{
-        pathname:"/new_song/:id"}} />;
+history.push('/new_song')
+      // location.assign(`/new_song/${current.id}`);
+      // <Redirect to="/new_song" />;
+      // <Redirect to={{
+      //   pathname:"/new_song/:id"}} />;
       console.log("redirect to newSong page");
     }
   };
@@ -52,6 +55,9 @@ const AddSongModal = () => {
         <h4 className="center">New Song</h4>
         <br />
         <div className="row">
+            <label htmlFor="title" className='active'>
+              Song Title
+            </label>
           <div className="input-field">
             <input
               type="text"
@@ -59,15 +65,11 @@ const AddSongModal = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <label htmlFor="title" className="active">
-              Song Title
-            </label>
           </div>
         </div>
       </div>
       <div className="modal-footer">
         <a
-          
           onClick={onSubmit}
           className={
             title
