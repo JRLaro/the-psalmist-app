@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { updateSong } from "../actions/songActions";
+import { Redirect } from "react-router-dom";
 
 const EditSongModal = ({ current, updateSong }) => {
   const [title, setTitle] = useState("");
@@ -40,6 +41,8 @@ const EditSongModal = ({ current, updateSong }) => {
       setIntro("");
       setVerse("");
       setChorus("");
+
+      <Redirect to="/new_song" />
     }
   };
 
@@ -107,11 +110,9 @@ const EditSongModal = ({ current, updateSong }) => {
       </div>
       <div className="modal-footer">
         <a
-          href="#!"
           onClick={onSubmit}
           className="modal-close waves-effect green btn"
         >
-          {" "}
           ENTER
         </a>
       </div>
@@ -119,7 +120,7 @@ const EditSongModal = ({ current, updateSong }) => {
   );
 };
 EditSongModal.propTypes = {
-  addSong: PropTypes.func.isRequired,
+  updateSong: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

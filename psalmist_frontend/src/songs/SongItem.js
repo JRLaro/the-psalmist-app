@@ -24,7 +24,7 @@ const SongItem = ({ song, deleteSong, setCurrent }) => {
         </a>
         <br />
         <span className="grey-text">
-          <span className="black-text">ID#{song.id}:</span> last updated
+          <span className="black-text" />last updated
           <Moment format="MMMM Do YYYY, h:mm:ss a">{song.date}</Moment>
         </span>
         <a href="#!" onClick={onDelete} className="secondary-content">
