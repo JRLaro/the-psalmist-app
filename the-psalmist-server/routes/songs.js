@@ -6,7 +6,7 @@ const auth = require("../middleware/auth");
 const User = require("../models/User");
 const Song = require("../models/Song");
 
-// get user's songs
+// get user's songs. Private access.
 router.get("/", auth, async (req, res) => {
   try {
     const songs = await Song.find({ user: req.user.id }).sort({ date: -1 });
@@ -17,7 +17,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// add a new song
+// add a new song. Private access. 
 router.post("/", auth, async (req, res) => {
   const {
     songId,
@@ -32,13 +32,30 @@ router.post("/", auth, async (req, res) => {
     audio,
     dateUpdated,
     dateCreated,
-  } = req.body
+  } = req.body;
 
   try {
-    
-    res.send("Add a song");
+    const newSong = new Song({
+      user: req.user.id,
+      songId,
+      title,
+      body,
+      isArchived,
+      ownerId,
+      collaborators,
+      notes,
+      songKey,
+      tempo,
+      audio,
+      dateUpdated,
+      dateCreated,
+    });
+
+    const song = await newSong.save()
+    res.json(song);
   } catch (error) {
-    
+    console.error(error.message);
+    res.status(500).send("Server Error.");
   }
 });
 
