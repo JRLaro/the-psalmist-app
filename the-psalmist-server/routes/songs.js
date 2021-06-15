@@ -59,7 +59,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// update a song
+// update a song. Private route
 router.put("/:id", auth, async (req, res) => {
   const {
     songId,
@@ -114,9 +114,23 @@ router.put("/:id", auth, async (req, res) => {
   }
 });
 
-// delete a song
-router.delete("/:id", (req, res) => {
-  res.send("delete a song");
+// delete a song. Private route.
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    let song = await Song.findById(req.params.id);
+    if (!song) return res.status(404).json({ msg: "Song not found." })
+
+    // Make sure the user owns the song
+    if (song.user.toString() !== req.user.id)
+    return res.status(401).json({ msg: "Not Authorized." });
+
+    // Delete the song
+    song = await Budget.findByIdAndRemove(req.params.id)
+    res.json({msg:"Song Removed."});
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("server error.");
+  }
 });
 
 module.exports = router;
