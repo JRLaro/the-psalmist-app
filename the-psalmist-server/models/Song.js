@@ -18,47 +18,56 @@ const SongSchema = mongoose.Schema({
   body: {
     intro: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     interlude: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     verse: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     preChorus: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     chorus: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     bridge: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     vamp: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     postlude: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
     outro: [
       {
-        type: string,
+        type: String,
+        required: false,
       },
     ],
   },
@@ -68,25 +77,29 @@ const SongSchema = mongoose.Schema({
   },
   ownerId: {
     type: String,
-    required: true,
+    required: false,
   },
   collaborators: [
     {
       userId: {
         type: String,
+        required: false,
       },
       permissions: [
         {
           type: String,
+          required: false,
         },
       ],
     },
   ],
   notes: {
     type: String,
+    required: false,
   },
   songKey: {
     type: String,
+    required: false,
   },
   tempo: {
     type: Number,
@@ -108,6 +121,7 @@ const SongSchema = mongoose.Schema({
       },
       recording: {
         type: BSONBinary,
+        required: false,
       },
       dateCreated: {
         type: Date,
@@ -138,6 +152,7 @@ const SongSchema = mongoose.Schema({
 
   dateUpdated: {
     type: Date,
+    required: false,
   },
   dateCreated: {
     type: Date,
