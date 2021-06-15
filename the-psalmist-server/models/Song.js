@@ -119,10 +119,10 @@ const SongSchema = mongoose.Schema({
         type: String,
         required: false,
       },
-      recording: {
-        type: BSONBinary,
-        required: false,
-      },
+      // recording: {
+      //   type: binary,
+      //   required: false,
+      // },
       dateCreated: {
         type: Date,
         default: Date.now(),
