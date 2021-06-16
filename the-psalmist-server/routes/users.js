@@ -3,8 +3,6 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
-
 const User = require("../models/User");
 
 // Register a user. Public access
@@ -71,7 +69,7 @@ router.post(
       // returns a token
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        process.env.JWT_SECRET,
         {
           expiresIn: 360000,
         },
@@ -85,9 +83,7 @@ router.post(
       // return a 500 status: server error.
       res.status(500).send("Server Error");
     }
-
   }
 );
 
 module.exports = router;
-
