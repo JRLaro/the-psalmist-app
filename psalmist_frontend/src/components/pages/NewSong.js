@@ -2,63 +2,67 @@ import React, { useRef, useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Editor } from "@tinymce/tinymce-react";
 import PropTypes from "prop-types";
-import { addSong, getSong } from "../../actions/songActions";
+import { addSong, getSong, getSongs } from "../../actions/songActions";
 
 const NewSong = ({ song: { current, song }, addSong, getSong }) => {
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    try {
-      if (current) {
-        await dispatch(getSong(current));
-        // console.log(song);
-        console.log(current);
-      } else {
-        console.log("current is empty");
-      }
+  // useEffect(async () => {
+  //   try {
+  //     if (current) {
+  //       await dispatch(getSong(current));
+  //       // console.log(song);
+  //       console.log(current);
+  //       getSongs();
+  //     } else {
+  //       console.log("current is empty");
+  //     }
 
-      // console.log(current);
-    } catch (error) {
-      console.log(error);
-    }
+  //     // console.log(current);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-    // if (current) {
-    //   getSong(current);
-    // } else {
-    //   return (<div>This is no current song</div>);
-    //   console.log("current is empty");
-    // }
-    // getSong(current);
-  }, [current]);
+  //   // if (current) {
+  //   //   getSong(current);
+  //   // } else {
+  //   //   return (<div>This is no current song</div>);
+  //   //   console.log("current is empty");
+  //   // }
+  //   // getSong(current);
+  // }, [current]);
 
-  const [intro, setIntro] = useState("");
-  const [verse, setVerse] = useState("");
-  const [chorus, setChorus] = useState("");
+  // const [intro, setIntro] = useState("");
+  // const [verse, setVerse] = useState("");
+  // const [chorus, setChorus] = useState("");
 
   const onSubmit = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
     }
 
-    const newSong = {
-      intro,
-      verse,
-      chorus,
-      date: new Date(),
-    };
+    // const newSong = {
+    //   intro,
+    //   verse,
+    //   chorus,
+    //   date: new Date(),
+    // };
 
-    addSong(newSong);
+    // addSong(newSong);
 
-    //clear fields
-    setIntro("");
-    setVerse("");
-    setChorus("");
+    // //clear fields
+    // setIntro("");
+    // setVerse("");
+    // setChorus("");
   };
 
   const editorRef = useRef(null);
+  let content = editorRef.current;
+
   const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
+    if (content) {
+      // console.log(editorRef.current.getContent());
+      console.log(getContent());
     }
   };
 
@@ -72,24 +76,27 @@ const NewSong = ({ song: { current, song }, addSong, getSong }) => {
             <button>Home</button>
           </a>
           <Editor
+            apiKey="1v1rtd8b64vx0ekbzfubrdydw3skdnd67tuq9924fu8h8tde"
             onInit={(evt, editor) => (editorRef.current = editor)}
             init={{
+              selector: "textarea#basic-example",
               height: 500,
               menubar: false,
               plugins: [
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table paste code help wordcount",
+                "quickbars",
               ],
+              quickbars_selection_toolbar: 'bold italic | formatselect | quicklink blockquote',
               toolbar:
-                "undo redo | formatselect | " +
+                // "undo redo | formatselect | " +
                 "bold italic backcolor | alignleft aligncenter " +
                 "alignright alignjustify | bullist numlist outdent indent | " +
                 "removeformat | help",
-
-              selector: "textarea",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+              
             }}
           />
           <a href="#!">
@@ -104,7 +111,6 @@ const NewSong = ({ song: { current, song }, addSong, getSong }) => {
           There is no data in current
         </div>
       )}
-        
     </div>
   );
 };

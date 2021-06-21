@@ -14,9 +14,9 @@ const EditSongModal = ({ current, updateSong }) => {
   useEffect(() => {
     if (current) {
       setTitle(current.title);
-      setIntro(current.intro);
-      setVerse(current.verse);
-      setChorus(current.chorus);
+      // setIntro(current.intro);
+      // setVerse(current.verse);
+      // setChorus(current.chorus);
     }
   }, [current]);
 

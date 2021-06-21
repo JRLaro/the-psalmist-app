@@ -11,7 +11,7 @@ const AddSongModal = () => {
   const { loading, current } = useSelector((state) => state.song);
 
 let history = useHistory()
-  console.log(current);
+  // console.log(current);
   // console.log(loading);
 
   // useEffect(() => {
@@ -39,9 +39,7 @@ let history = useHistory()
 history.push('/new_song')
       // location.assign(`/new_song/${current.id}`);
       // <Redirect to="/new_song" />;
-      // <Redirect to={{
-      //   pathname:"/new_song/:id"}} />;
-      console.log("redirect to newSong page");
+      // console.log("redirect to newSong page");
     }
   };
 

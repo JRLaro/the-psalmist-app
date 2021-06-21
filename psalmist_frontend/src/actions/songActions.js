@@ -42,7 +42,7 @@ export const getSong = (song) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.get(`/new_song/${song.id}`, song, config);
+    const res = await axios.get(`/songs/${song.id}`, song, config);
 console.log('says something - get song');
     dispatch({
       type: GET_SONG,
