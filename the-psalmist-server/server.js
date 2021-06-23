@@ -3,7 +3,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 
 // Connect Database
-connectDB();
+// connectDB();
 const app = express();
 
 // allow us to accept data/ allows the body to receive data
@@ -20,6 +20,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/songs", require("./routes/songs"));
 app.use("/api/users", require("./routes/users"));
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
