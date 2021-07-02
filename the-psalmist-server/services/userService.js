@@ -1,7 +1,4 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("config");
-
 const User = require("../models/User");
 const makeError = require("../utils/errors");
 
@@ -37,8 +34,6 @@ const createUserService = async ({
 
         // Saves user to the database
         await user.save();
-
-        //handle error here if user isn't saved
 
         const payload = {
             user: {
