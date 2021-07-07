@@ -31,19 +31,17 @@ export const getSongs = () => async (dispatch) => {
   }
 };
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 //get song
 export const getSong = (song) => async (dispatch) => {
-  // console.log(' I should get song back');
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   try {
     setLoading();
 
     const res = await axios.get(`/new_song/${song.id}`, song, config);
-console.log('says something - get song');
     dispatch({
       type: GET_SONG,
       payload: res.data,
@@ -58,12 +56,6 @@ console.log('says something - get song');
 
 //add song
 export const addSong = (song) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   try {
     startLoading();
 
@@ -85,11 +77,6 @@ export const addSong = (song) => async (dispatch) => {
 
 //update song
 export const updateSong = (song) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
   try {
     setLoading();
 
