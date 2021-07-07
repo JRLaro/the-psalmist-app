@@ -3,8 +3,6 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
-
 const User = require("../models/User");
 
 const userController = require("../controllers/userController");
@@ -14,4 +12,3 @@ const { userValidationRules, validate } = require('../middleware/userValidator')
 router.post('/', userValidationRules(), validate, userController.createUser)
 
 module.exports = router;
-
